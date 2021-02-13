@@ -1,6 +1,6 @@
 package com.example.mysamplemiddledev.net.api
 
-import com.example.mysamplemiddledev.model.Post
+import com.example.mysamplemiddledev.model.colibri_example.Post
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -13,5 +13,5 @@ interface NetworkApiService {
     fun getPostWithID(@Path("id") id: Int): Observable<Post>
 
     @POST("/posts")
-    fun setPost(@Body data:Post):Observable<Post>
+    fun setPost(@Body data: Post):Observable<Post>
 }

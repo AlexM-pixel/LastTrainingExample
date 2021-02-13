@@ -1,4 +1,4 @@
-package com.example.mysamplemiddledev.model
+package com.example.mysamplemiddledev.model.colibri_example
 
 
 import com.google.gson.annotations.SerializedName

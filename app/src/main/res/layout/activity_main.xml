@@ -1,52 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.statsUsers.MainActivity">
+    tools:context=".ui.MainActivity">
 
-    <Button
-        android:id="@+id/habr_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="get users from habr"
-        android:padding="18dp"
-        android:textSize="20sp"
-        android:textColor="#ffff"
-        android:background="@color/buttonHubr"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="26dp"/>
-    <Button
-        android:id="@+id/colibri_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/habr_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="18dp"
-        android:background="@color/buttonColibri"
-        android:text="get user from Colibri"
-        android:textSize="20sp"
-        android:textColor="#ffff"
-        android:layout_margin="26dp"
-        android:gravity="center"/>
-    <Button
-        android:id="@+id/colibri_button_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/colibri_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="18dp"
-        android:background="@color/buttonColibri"
-        android:text="Post user to Colibri"
-        android:textSize="20sp"
-        android:textColor="#ffff"
-        android:layout_margin="26dp"
-        android:gravity="center"/>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.mysamplemiddledev.viewModel.MyViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#51EFA63B">
+
+        <EditText
+            android:id="@+id/edit_query_location"
+            style="@style/EditText_Query_Style"
+            android:hint="@string/query_location"
+            android:text="@={viewModel.city}"
+            app:layout_constraintEnd_toStartOf="@+id/edit_query_language"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_query_language"
+            style="@style/EditText_Query_Style"
+            android:layout_margin="6dp"
+            android:hint="@string/query_language"
+            android:text="@={viewModel.language}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/edit_query_location"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/habr_button"
+            style="@style/ButtonRetrofitStyle"
+            android:background="@color/buttonHubr"
+            android:onClick="@{()->viewModel.getUsersFromGitHub()}"
+            android:text="@string/titile_button_get_hubr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_query_language" />
+
+        <Button
+            android:id="@+id/colibri_button"
+            style="@style/ButtonRetrofitStyle"
+            android:background="@color/buttonColibri"
+            android:onClick="@{()->viewModel.getPostFromColibri()}"
+            android:text="get user from Colibri"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/habr_button" />
+
+        <Button
+            android:id="@+id/colibri_button_post"
+            style="@style/ButtonRetrofitStyle"
+            android:background="@color/buttonColibri"
+            android:onClick="@{()->viewModel.postToColibri()}"
+            android:text="Post user to Colibri"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/colibri_button" />
+
+        <TextView
+            android:id="@+id/text_view_factCats"
+            style="@style/TextViewTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="some text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/colibri_button_post" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_factCats" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -7,4 +7,30 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ButtonRetrofitStyle">
+        <item name="android:layout_margin">26dp</item>
+        <item name="android:padding">18dp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="EditText_Query_Style">
+        <item name="android:layout_margin">6dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextViewTheme">
+        <item name="android:background">#E6EFEF</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:elevation">3dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">18dp</item>
+    </style>
 </resources>

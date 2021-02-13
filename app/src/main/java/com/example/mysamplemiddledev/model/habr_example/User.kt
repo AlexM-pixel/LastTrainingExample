@@ -1,4 +1,4 @@
-package com.example.mysamplemiddledev.model
+package com.example.mysamplemiddledev.model.habr_example
 
 data class User(
     val login: String,

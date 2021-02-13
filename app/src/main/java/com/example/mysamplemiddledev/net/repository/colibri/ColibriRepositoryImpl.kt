@@ -1,6 +1,6 @@
 package com.example.mysamplemiddledev.net.repository.colibri
 
-import com.example.mysamplemiddledev.model.Post
+import com.example.mysamplemiddledev.model.colibri_example.Post
 import com.example.mysamplemiddledev.net.api.NetworkApiService
 import io.reactivex.Observable
 
