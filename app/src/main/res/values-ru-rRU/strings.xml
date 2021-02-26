@@ -4,4 +4,5 @@
     <string name="titile_button_get_hubr" translatable="false">поиск пользавателей github</string>
     <string name="query_location" translatable="false">локация</string>
     <string name="query_language" translatable="false">язык</string>
+    <string name="title_bookmarks_list">программисты из базы данных</string>
 </resources>

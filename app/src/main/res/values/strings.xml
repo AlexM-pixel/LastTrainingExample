@@ -3,4 +3,9 @@
     <string name="titile_button_get_hubr">get users from habr</string>
     <string name="query_location">location</string>
     <string name="query_language">language</string>
+    <string name="title_bookmarks_list">programmers in DB</string>
+    <string name="title_colibryButton" translatable="false">Post user</string>
+    <string name="empty_textView" translatable="false">some text</string>
+    <string name="title_buttonToGetFrom_Colibry" translatable="false">get user</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

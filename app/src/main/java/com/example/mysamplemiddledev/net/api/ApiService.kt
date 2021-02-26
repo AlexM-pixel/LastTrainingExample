@@ -1,7 +1,7 @@
 package com.example.mysamplemiddledev.net.api
 
 
-import com.example.mysamplemiddledev.model.habr_example.Result
+import com.example.mysamplemiddledev.model.habr_example.ResponseResult
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -11,5 +11,5 @@ interface ApiService {
     fun search(
         @Query("q") language: String,
         @Query("type") type: String
-    ): Observable<Result>
+    ): Observable<ResponseResult>
 }

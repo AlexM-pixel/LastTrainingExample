@@ -1,5 +1,8 @@
 package com.example.mysamplemiddledev.providers
 
+import com.example.mysamplemiddledev.db.repository.UserFromGitHubRepository
+import com.example.mysamplemiddledev.db.repository.UserFromGitHubRepositoryImpl
+import com.example.mysamplemiddledev.db.room.UserDao
 import com.example.mysamplemiddledev.net.api.ApiService
 import com.example.mysamplemiddledev.net.api.CatsFactApi
 import com.example.mysamplemiddledev.net.api.NetworkApiService
@@ -21,5 +24,9 @@ object RepositoriesProvider {
 
     fun provideCatFactsRepository(catsFactApi: CatsFactApi): CatFactsRepository {
         return CatFactsRepositoryImpl(catsFactApi = catsFactApi)
+    }
+
+    fun provideGitHubRepository(userDao: UserDao): UserFromGitHubRepository {
+        return UserFromGitHubRepositoryImpl(userDao)
     }
 }
