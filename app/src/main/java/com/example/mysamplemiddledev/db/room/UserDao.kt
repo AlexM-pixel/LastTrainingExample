@@ -14,8 +14,8 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: User): Single<Long?>
 
-    @Insert
-    fun insertUser(vararg user: User)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertUsers(usersList: MutableList<User>): Single<List<Long>>
 
     @Query("SELECT * from favorite_user")
     fun getAllUsers(): Observable<List<User>>

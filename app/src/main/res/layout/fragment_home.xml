@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <EditText
             android:id="@+id/edit_query_location"
             style="@style/EditText_Query_Style"
@@ -30,9 +31,10 @@
             android:layout_margin="6dp"
             android:hint="@string/query_language"
             android:text="@={viewModel.language}"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_query_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/edit_query_location"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/edit_query_location" />
 
         <Button
             android:id="@+id/habr_button"
@@ -99,13 +101,14 @@
             app:layout_constraintTop_toBottomOf="@+id/habr_button" />
 
         <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/rv_responseResult"
+            android:id="@+id/rv_response_user_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/item_user"
-            app:layout_constraintTop_toBottomOf="@+id/divider_text" />
+            app:layout_constraintTop_toBottomOf="@+id/divider_text"
+            tools:listitem="@layout/item_user" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

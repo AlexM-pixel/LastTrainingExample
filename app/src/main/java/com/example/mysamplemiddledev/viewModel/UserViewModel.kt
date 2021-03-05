@@ -4,20 +4,17 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.mysamplemiddledev.db.repository.UserFromGitHubRepository
-import com.example.mysamplemiddledev.db.repository.UserFromGitHubRepositoryImpl
 import com.example.mysamplemiddledev.db.room.AppDatabase
 import com.example.mysamplemiddledev.db.room.UserDao
-import com.example.mysamplemiddledev.model.cat_facts.Fact
 import com.example.mysamplemiddledev.model.habr_example.User
 import com.example.mysamplemiddledev.providers.RepositoriesProvider
 import com.example.mysamplemiddledev.service.UserGitHubService
-import com.example.mysamplemiddledev.ui.adapters.HomeFragmentRvAdapter
+import com.example.mysamplemiddledev.ui.adapters.homefragment_adaper.UsersListRvAdapter
 import io.reactivex.disposables.CompositeDisposable
 
 class UserViewModel(application: Application) : AndroidViewModel(application),
-    HomeFragmentRvAdapter.OnItemClickListener {
+    UsersListRvAdapter.OnItemClickListener {
     private val compositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
     private val userDao: UserDao = AppDatabase.getDatabase(application).userDao()
     private val userGitHubService: UserGitHubService

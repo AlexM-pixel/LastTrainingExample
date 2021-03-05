@@ -1,12 +1,12 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:listDivider">@color/buttonColibri</item>
-        <item name="backgroundGradient">@drawable/selector_bg</item>
+        <item name="backgroundGradient">@drawable/gradient_bg</item>
+        <item name="android:actionModeBackground">@color/colorPrimaryDark</item>
     </style>
 
     <style name="ButtonRetrofitStyle">
@@ -26,7 +26,7 @@
     </style>
 
     <style name="TextViewTheme">
-        <item name="android:background">#E6EFEF</item>
+        <item name="android:background">@color/bg_Color</item>
         <item name="android:layout_marginTop">6dp</item>
         <item name="android:elevation">3dp</item>
         <item name="android:textSize">18sp</item>

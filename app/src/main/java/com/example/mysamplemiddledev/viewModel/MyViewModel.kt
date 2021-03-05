@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.mysamplemiddledev.db.room.AppDatabase
 import com.example.mysamplemiddledev.db.room.UserDao
 import com.example.mysamplemiddledev.model.State
@@ -17,7 +16,6 @@ import com.example.mysamplemiddledev.providers.NetworkFactoryProvider
 import com.example.mysamplemiddledev.providers.RepositoriesProvider
 import com.example.mysamplemiddledev.service.CatsFactService
 import com.example.mysamplemiddledev.service.UserGitHubService
-import com.example.mysamplemiddledev.ui.adapters.HomeFragmentRvAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -112,16 +110,24 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
         compositeDisposable.dispose()
     }
 
-    fun insertUser(user: User) {
+    fun insertUsers(list: List<Long>) {
+        val usersList = mutableListOf<User>()
         val userRepository = RepositoriesProvider.provideGitHubRepository(userDao = userDao)
         val userGitHubService = UserGitHubService(gitHubRepository = userRepository)
-        val disposable = userGitHubService.insertUser(user)
+        for (id in list) {
+            usersFromGitHubLivaData.value!!.items.forEach { user ->
+                if (id == user.id) {
+                    usersList.add(user)
+                }
+            }
+        }
+        val disposable = userGitHubService.insertUser(usersList)
             .subscribe({
                 Log.e("subscribe", "Get_success: $it")
+                stateLiveData.value = State.SAVED
             }, { error ->
                 Log.e("subscribe", "Get_error: ${error.message}")
             })
         compositeDisposable.add(disposable)
-
     }
 }

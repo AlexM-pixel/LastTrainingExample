@@ -10,7 +10,6 @@ import com.example.mysamplemiddledev.model.State
 import com.example.mysamplemiddledev.ui.adapters.ViewPagerAdapter
 import com.example.mysamplemiddledev.ui.base.BaseActivity
 import com.example.mysamplemiddledev.viewModel.MyViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 
 const val NUM_PAGES = 2
 
@@ -23,7 +22,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val pagerAdapter = ViewPagerAdapter(this)
-        vp.apply {
+        binding.vp.apply {
             adapter = pagerAdapter
         }
     }

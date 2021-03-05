@@ -5,4 +5,10 @@
     <string name="query_location" translatable="false">локация</string>
     <string name="query_language" translatable="false">язык</string>
     <string name="title_bookmarks_list">программисты из базы данных</string>
+    <string name="action_mode_save">сохранить</string>
+    <string name="action_mode_clear">очистить</string>
+    <string name="action_mode_delete">удалить</string>
+    <string name="action_mode_apply">согласен</string>
+    <string name="title_action_bar">" просто приложение"</string>
+    <string name="action_mode_selected">выделено</string>
 </resources>

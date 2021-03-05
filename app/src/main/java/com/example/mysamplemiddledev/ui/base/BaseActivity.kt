@@ -5,9 +5,10 @@ import android.view.Gravity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 
-abstract class BaseActivity : FragmentActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     protected fun showView(view: View) {
         if (view.visibility == View.GONE) {

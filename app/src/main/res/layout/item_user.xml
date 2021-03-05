@@ -55,7 +55,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="6dp"
                 android:scaleType="fitEnd"
-                android:src="@drawable/ic_add_circle_outline_24" />
+                android:src="@drawable/item_add" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

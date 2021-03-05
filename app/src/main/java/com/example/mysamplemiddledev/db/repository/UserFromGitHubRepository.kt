@@ -7,5 +7,5 @@ import io.reactivex.Single
 interface UserFromGitHubRepository {
     fun getUsersList(): Observable<List<User>>
     fun getUserById(id: Long): Observable<User>
-    fun insertUser(user: User): Single<Long?>
+    fun insertUser(list: MutableList<User>): Single<List<Long>>
 }

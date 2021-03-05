@@ -14,7 +14,7 @@ class UserFromGitHubRepositoryImpl(private val userDao: UserDao) : UserFromGitHu
         return userDao.getById(id = id)
     }
 
-    override fun insertUser(user: User): Single<Long?> {
-        return userDao.insertUser(user = user)
+    override fun insertUser(list: MutableList<User>): Single<List<Long>> {
+        return userDao.insertUsers(usersList = list)
     }
 }

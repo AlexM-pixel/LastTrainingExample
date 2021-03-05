@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">MySampleMiddleDev</string>
+    <string name="title_action_bar">Just_App</string>
     <string name="titile_button_get_hubr">get users from habr</string>
     <string name="query_location">location</string>
     <string name="query_language">language</string>
@@ -7,5 +8,11 @@
     <string name="title_colibryButton" translatable="false">Post user</string>
     <string name="empty_textView" translatable="false">some text</string>
     <string name="title_buttonToGetFrom_Colibry" translatable="false">get user</string>
+    <string name="menu_another_mode" translatable="false">Turn on another mode</string>
+    <string name="action_mode_delete">Delete</string>
+    <string name="action_mode_clear">Clear</string>
+    <string name="action_mode_apply">Apply</string>
+    <string name="action_mode_save">save</string>
+    <string name="action_mode_selected">selected</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

@@ -4,5 +4,6 @@ enum class State {
     NO_LOAD,
     LOADED,
     LOADING,
-    ERROR
+    ERROR,
+    SAVED
 }
