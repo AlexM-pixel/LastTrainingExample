@@ -1,6 +1,7 @@
 package com.example.mysamplemiddledev.db.repository
 
 import com.example.mysamplemiddledev.db.room.UserDao
+import com.example.mysamplemiddledev.model.habr_example.ResponseUser
 import com.example.mysamplemiddledev.model.habr_example.User
 import io.reactivex.Observable
 import io.reactivex.Single

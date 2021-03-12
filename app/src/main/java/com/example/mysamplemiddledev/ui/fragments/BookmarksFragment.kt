@@ -4,27 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mysamplemiddledev.R
 import com.example.mysamplemiddledev.databinding.FragmentBookmarksBinding
+import com.example.mysamplemiddledev.model.habr_example.ResponseUser
 import com.example.mysamplemiddledev.model.habr_example.User
+import com.example.mysamplemiddledev.ui.adapters.bookmarksfragment_adapter.ExpendableRecyclerViewAdapter
 import com.example.mysamplemiddledev.ui.adapters.homefragment_adaper.UsersListRvAdapter
 import com.example.mysamplemiddledev.ui.base.BaseFragment
 import com.example.mysamplemiddledev.viewModel.UserViewModel
+import kotlinx.android.synthetic.main.fragment_bookmarks.view.*
 
-class BookmarksFragment : BaseFragment(), UsersListRvAdapter.OnItemClickListener {
+class BookmarksFragment : BaseFragment() {
     private lateinit var viewModelByGitHub: UserViewModel
     private lateinit var binding: FragmentBookmarksBinding
-    private lateinit var bookmarksAdapter: UsersListRvAdapter
+    private lateinit var bookmarksAdapter: ExpendableRecyclerViewAdapter
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModelByGitHub =  ViewModelProvider(this).get(UserViewModel::class.java)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +30,7 @@ class BookmarksFragment : BaseFragment(), UsersListRvAdapter.OnItemClickListener
     ): View? {
         binding =
             DataBindingUtil.inflate(layoutInflater, R.layout.fragment_bookmarks, container, false)
+        viewModelByGitHub = ViewModelProvider(this).get(UserViewModel::class.java)
         return binding.root
     }
 
@@ -47,14 +46,12 @@ class BookmarksFragment : BaseFragment(), UsersListRvAdapter.OnItemClickListener
     }
 
     private fun initRecyclerView() {
-        bookmarksAdapter = UsersListRvAdapter(listener = this)
+        bookmarksAdapter = ExpendableRecyclerViewAdapter()
         binding.rvProgrammers.apply {
             layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
             adapter = bookmarksAdapter
         }
     }
 
-    override fun onItemClick(user: User) {
-      showMessage("робить")
-    }
 }

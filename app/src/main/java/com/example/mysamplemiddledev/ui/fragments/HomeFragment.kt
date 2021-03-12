@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mysamplemiddledev.R
 import com.example.mysamplemiddledev.databinding.FragmentHomeBinding
 import com.example.mysamplemiddledev.model.State
+import com.example.mysamplemiddledev.model.habr_example.ResponseUser
 import com.example.mysamplemiddledev.model.habr_example.User
 import com.example.mysamplemiddledev.ui.adapters.homefragment_adaper.ActionModeController
 import com.example.mysamplemiddledev.ui.adapters.homefragment_adaper.MyItemKeyProvider
@@ -49,8 +50,8 @@ class HomeFragment : BaseFragment(), UsersListRvAdapter.OnItemClickListener {
             binding.textViewFactCats.text = it.last().text
         })
         viewModel.usersFromGitHubLivaData.observe(viewLifecycleOwner, {
-            showMessage("всего колличество прогеров:  ${it.total_count}")
-            homeAdapter.setUserList(it.items)
+            showMessage("всего колличество прогеров:  ${it.size}")
+            homeAdapter.setUserList(it)
         })
         viewModel.stateLiveData.observe(viewLifecycleOwner, {
             when (it) {
@@ -59,8 +60,8 @@ class HomeFragment : BaseFragment(), UsersListRvAdapter.OnItemClickListener {
                     hideKeyboard()
                 }
                 State.LOADED -> hideView(binding.progressBar)
-                State.ERROR -> showMessage(it.name)
-                State.SAVED -> showMessage("saved")
+                State.ERROR -> showMessage(it.stateDescription)
+                State.SAVED -> showMessage(it.stateDescription)
                 else -> hideView(binding.progressBar)
             }
         })

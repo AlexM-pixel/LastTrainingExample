@@ -85,8 +85,14 @@ dependencies {
     //Pref
     implementation "com.chibatching.kotpref:kotpref:$kotpref"
 
-    //Picasso
-    implementation "com.squareup.picasso:picasso:$picassoVersion"
+    // for loading and rounding images
+    implementation "com.squareup.picasso:picasso:$picassoVersion"  //Picasso
+    implementation 'de.hdodenhof:circleimageview:3.1.0' //circularImageView
+
+
+    // for ripple effect
+    implementation 'com.balysv:material-ripple:1.0.2'
+
 
     //viewpager2
     implementation "androidx.viewpager2:viewpager2:1.0.0"

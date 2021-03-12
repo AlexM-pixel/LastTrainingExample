@@ -7,14 +7,14 @@ import androidx.lifecycle.MutableLiveData
 import com.example.mysamplemiddledev.db.repository.UserFromGitHubRepository
 import com.example.mysamplemiddledev.db.room.AppDatabase
 import com.example.mysamplemiddledev.db.room.UserDao
+import com.example.mysamplemiddledev.model.habr_example.ResponseUser
 import com.example.mysamplemiddledev.model.habr_example.User
 import com.example.mysamplemiddledev.providers.RepositoriesProvider
 import com.example.mysamplemiddledev.service.UserGitHubService
 import com.example.mysamplemiddledev.ui.adapters.homefragment_adaper.UsersListRvAdapter
 import io.reactivex.disposables.CompositeDisposable
 
-class UserViewModel(application: Application) : AndroidViewModel(application),
-    UsersListRvAdapter.OnItemClickListener {
+class UserViewModel(application: Application) : AndroidViewModel(application) {
     private val compositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
     private val userDao: UserDao = AppDatabase.getDatabase(application).userDao()
     private val userGitHubService: UserGitHubService
@@ -26,14 +26,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application),
         userGitHubService = UserGitHubService(gitHubRepository = userRepository)
     }
 
-    override fun onItemClick(user: User) {
 
-    }
 
     fun getUsers() {
         val disposable = userGitHubService.getListUsers()
             .subscribe({
                 usersLiveData.value = it
+                Log.e("subscribe", "listusers: ${it.size}")
             }, { error ->
                 Log.e("subscribe", "Get_error: ${error.message}")
             })

@@ -1,9 +1,9 @@
 package com.example.mysamplemiddledev.service
 
 import com.example.mysamplemiddledev.db.repository.UserFromGitHubRepository
+import com.example.mysamplemiddledev.model.habr_example.ResponseUser
 import com.example.mysamplemiddledev.model.habr_example.User
 import io.reactivex.Observable
-import io.reactivex.Observer
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

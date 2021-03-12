@@ -1,6 +1,5 @@
 package com.example.mysamplemiddledev.ui.adapters.homefragment_adaper
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup

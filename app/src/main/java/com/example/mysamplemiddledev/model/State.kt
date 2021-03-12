@@ -1,9 +1,9 @@
 package com.example.mysamplemiddledev.model
 
-enum class State {
-    NO_LOAD,
-    LOADED,
-    LOADING,
-    ERROR,
-    SAVED
+enum class State(var stateDescription:String) {
+    NO_LOAD(""),
+    LOADED("count loaded files"),
+    LOADING("files download"),
+    ERROR("error"),
+    SAVED("count saved files")
 }

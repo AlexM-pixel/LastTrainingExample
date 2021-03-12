@@ -14,5 +14,6 @@
     <string name="action_mode_apply">Apply</string>
     <string name="action_mode_save">save</string>
     <string name="action_mode_selected">selected</string>
+    <string name="title_empty">empty</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
