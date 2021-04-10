@@ -1,6 +1,5 @@
 package com.example.mysamplemiddledev.ui.adapters.bookmarksfragment_adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -10,9 +9,19 @@ import com.example.mysamplemiddledev.databinding.ItemSavedUsersBinding
 import com.example.mysamplemiddledev.model.habr_example.User
 import com.squareup.picasso.Picasso
 
-class SavedUsersRvAdapter : RecyclerView.Adapter<SavedUsersRvAdapter.MySavedListHolder>() {
+class SavedUsersRvAdapter(listener: OnClickSavedUser) :
+    RecyclerView.Adapter<SavedUsersRvAdapter.MySavedListHolder>() {
     private var usersList: MutableList<User>? = mutableListOf()
     private val picasso = Picasso.get()
+    private var listener: OnClickSavedUser? = null
+
+    init {
+        this.listener = listener
+    }
+
+    interface OnClickSavedUser {
+        fun getUserName(name: String)
+    }
 
     inner class MySavedListHolder(val binding: ItemSavedUsersBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -20,7 +29,10 @@ class SavedUsersRvAdapter : RecyclerView.Adapter<SavedUsersRvAdapter.MySavedList
             picasso.load(user?.avatar_url)
                 .into(binding.imageCircle)
             binding.user = user
-          //  binding.executePendingBindings()
+            //  binding.executePendingBindings()
+            binding.root.setOnClickListener {
+                listener?.getUserName(user!!.login)
+            }
         }
     }
 
@@ -50,7 +62,6 @@ class SavedUsersRvAdapter : RecyclerView.Adapter<SavedUsersRvAdapter.MySavedList
         if (list != null) {
             usersList?.addAll(list)
         }
-        Log.e("subscribe", "setUserList: ${usersList?.size}")
         notifyDataSetChanged()
     }
 }

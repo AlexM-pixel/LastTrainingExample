@@ -10,6 +10,8 @@ import com.example.mysamplemiddledev.model.State
 import com.example.mysamplemiddledev.ui.adapters.ViewPagerAdapter
 import com.example.mysamplemiddledev.ui.base.BaseActivity
 import com.example.mysamplemiddledev.viewModel.MyViewModel
+import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 const val NUM_PAGES = 2
 
@@ -25,5 +27,9 @@ class MainActivity : BaseActivity() {
         binding.vp.apply {
             adapter = pagerAdapter
         }
+        val tabLayout = binding.root.tab_layout
+        TabLayoutMediator(tabLayout, binding.vp) { tab, position ->
+            tab.text = "fragment: $position"
+        }.attach()
     }
 }

@@ -13,12 +13,13 @@ import com.example.mysamplemiddledev.databinding.FragmentBookmarksBinding
 import com.example.mysamplemiddledev.model.habr_example.ResponseUser
 import com.example.mysamplemiddledev.model.habr_example.User
 import com.example.mysamplemiddledev.ui.adapters.bookmarksfragment_adapter.ExpendableRecyclerViewAdapter
+import com.example.mysamplemiddledev.ui.adapters.bookmarksfragment_adapter.SavedUsersRvAdapter
 import com.example.mysamplemiddledev.ui.adapters.homefragment_adaper.UsersListRvAdapter
 import com.example.mysamplemiddledev.ui.base.BaseFragment
 import com.example.mysamplemiddledev.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_bookmarks.view.*
 
-class BookmarksFragment : BaseFragment() {
+class BookmarksFragment : BaseFragment(),SavedUsersRvAdapter.OnClickSavedUser {
     private lateinit var viewModelByGitHub: UserViewModel
     private lateinit var binding: FragmentBookmarksBinding
     private lateinit var bookmarksAdapter: ExpendableRecyclerViewAdapter
@@ -46,12 +47,16 @@ class BookmarksFragment : BaseFragment() {
     }
 
     private fun initRecyclerView() {
-        bookmarksAdapter = ExpendableRecyclerViewAdapter()
+        bookmarksAdapter = ExpendableRecyclerViewAdapter(this)
         binding.rvProgrammers.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = bookmarksAdapter
         }
+    }
+
+    override fun getUserName(name: String) {
+        showMessage(name)
     }
 
 }

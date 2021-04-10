@@ -15,10 +15,11 @@ import com.example.mysamplemiddledev.utils.animations.Animations
 import kotlinx.android.synthetic.main.item_user_expand.view.*
 
 
-class ExpendableRecyclerViewAdapter() :
+class ExpendableRecyclerViewAdapter(private val listener: SavedUsersRvAdapter.OnClickSavedUser) :
     RecyclerView.Adapter<ExpendableRecyclerViewAdapter.ViewHolder>() {
     private var titleList: MutableList<User>? = mutableListOf()
     private var usersList: MutableList<User>? = mutableListOf()
+
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -53,7 +54,8 @@ class ExpendableRecyclerViewAdapter() :
 
     inner class ViewHolder(itemView: ItemUserExpandBinding) :
         RecyclerView.ViewHolder(itemView.root) {
-        val savedAdapter = SavedUsersRvAdapter()
+        private val savedAdapter = SavedUsersRvAdapter(listener = listener)
+
         init {
             itemView.rvSavedProgrammers.apply {
                 layoutManager = LinearLayoutManager(itemView.root.context)
