@@ -7,8 +7,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import dagger.android.support.DaggerFragment
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : DaggerFragment() {
     protected fun showError(exception:Throwable?){
         if(exception==null)
             return

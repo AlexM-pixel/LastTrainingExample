@@ -18,8 +18,11 @@ import com.example.mysamplemiddledev.ui.adapters.homefragment_adaper.UsersListRv
 import com.example.mysamplemiddledev.ui.base.BaseFragment
 import com.example.mysamplemiddledev.viewModel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_bookmarks.view.*
+import javax.inject.Inject
 
 class BookmarksFragment : BaseFragment(),SavedUsersRvAdapter.OnClickSavedUser {
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModelByGitHub: UserViewModel
     private lateinit var binding: FragmentBookmarksBinding
     private lateinit var bookmarksAdapter: ExpendableRecyclerViewAdapter
@@ -31,7 +34,7 @@ class BookmarksFragment : BaseFragment(),SavedUsersRvAdapter.OnClickSavedUser {
     ): View? {
         binding =
             DataBindingUtil.inflate(layoutInflater, R.layout.fragment_bookmarks, container, false)
-        viewModelByGitHub = ViewModelProvider(this).get(UserViewModel::class.java)
+        viewModelByGitHub = ViewModelProvider(this,viewModelFactory).get(UserViewModel::class.java)
         return binding.root
     }
 

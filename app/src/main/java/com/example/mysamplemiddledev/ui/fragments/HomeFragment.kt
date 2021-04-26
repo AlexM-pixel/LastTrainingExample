@@ -1,5 +1,6 @@
 package com.example.mysamplemiddledev.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.ActionMode
@@ -23,9 +24,14 @@ import com.example.mysamplemiddledev.ui.adapters.homefragment_adaper.MyLookup
 import com.example.mysamplemiddledev.ui.adapters.homefragment_adaper.UsersListRvAdapter
 import com.example.mysamplemiddledev.ui.base.BaseFragment
 import com.example.mysamplemiddledev.viewModel.MyViewModel
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class HomeFragment : BaseFragment(), UsersListRvAdapter.OnItemClickListener {
-    private lateinit var viewModel: MyViewModel
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var   viewModel: MyViewModel
     private lateinit var homeAdapter: UsersListRvAdapter
     private lateinit var binding: FragmentHomeBinding
     private var myTracker: SelectionTracker<Long>? = null
@@ -41,7 +47,7 @@ class HomeFragment : BaseFragment(), UsersListRvAdapter.OnItemClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MyViewModel::class.java)
         initRecyclerView()
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel

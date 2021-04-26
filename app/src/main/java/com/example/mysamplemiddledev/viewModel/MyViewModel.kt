@@ -1,33 +1,30 @@
 package com.example.mysamplemiddledev.viewModel
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.mysamplemiddledev.db.room.AppDatabase
-import com.example.mysamplemiddledev.db.room.UserDao
+import androidx.lifecycle.ViewModel
 import com.example.mysamplemiddledev.model.State
 import com.example.mysamplemiddledev.model.cat_facts.Fact
 import com.example.mysamplemiddledev.model.colibri_example.Post
-import com.example.mysamplemiddledev.model.habr_example.ResponseResult
-import com.example.mysamplemiddledev.model.habr_example.ResponseUser
 import com.example.mysamplemiddledev.model.habr_example.User
-import com.example.mysamplemiddledev.net.repository.colibri.ColibriRepository
-import com.example.mysamplemiddledev.providers.NetworkFactoryProvider
-import com.example.mysamplemiddledev.providers.RepositoriesProvider
+import com.example.mysamplemiddledev.net.repository.habr.HabrRepository
 import com.example.mysamplemiddledev.service.CatsFactService
+import com.example.mysamplemiddledev.service.ColibryService
 import com.example.mysamplemiddledev.service.UserGitHubService
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
-import java.util.*
+import javax.inject.Inject
 
-class MyViewModel(application: Application) : AndroidViewModel(application) {
+class MyViewModel @Inject constructor(
+    private val userGitHubService: UserGitHubService,
+    private val catsFactService: CatsFactService,
+    private val colibriService: ColibryService,
+    private val habrRepository: HabrRepository
+) : ViewModel() {
+
     private val compositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
-    private val catsFactService = CatsFactService()
-    private val userDao: UserDao = AppDatabase.getDatabase(application = application).userDao()
     private val listUsers = mutableListOf<User>()
 
     //LiveData
@@ -54,10 +51,6 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
     fun getUsersFromGitHub() {
         listUsers.clear()
         stateLiveData.value = State.LOADING
-        val apiService =
-            NetworkFactoryProvider.provideHubrApiFactory()
-        val habrRepository =
-            RepositoriesProvider.provideHabrRepository(apiService)
         val dis = habrRepository.searchUsers("location:$city language:$language", "user")
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
@@ -92,9 +85,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getPostFromColibri() {
         stateLiveData.value = State.LOADING
-        val dis = getRepository().searchUser(11)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+        val dis = colibriService.searchUser(11)
             .subscribe({
                 stateLiveData.value = State.LOADED
                 Log.e("subscribe", "Get_success:  $it \n ${it.id}")
@@ -108,9 +99,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
 
     fun postToColibri() {
         stateLiveData.value = State.LOADING
-        val dis = getRepository().sendPost(Post(1, 2, "MyPost", "Body from my Post"))
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+        val dis = colibriService.sendPost(Post(1, 2, "MyPost", "Body from my Post"))
             .subscribe({
                 stateLiveData.value = State.LOADED
                 Log.e("subscribe", "Post_success:  ${it.title}, ${it.body} \n ${it.id}")
@@ -121,12 +110,6 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
         compositeDisposable.add(dis)
     }
 
-    fun getRepository(): ColibriRepository {
-        val networkApiService =
-            NetworkFactoryProvider.provideColibriApiFactory()                         // здесь приходит объект networkApiService
-        return RepositoriesProvider.provideColibriRepository(networkApiService)
-    }
-
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
@@ -134,8 +117,6 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
 
     fun insertUsers(list: List<Long>) {
         val usersList = mutableListOf<User>()
-        val userRepository = RepositoriesProvider.provideGitHubRepository(userDao = userDao)
-        val userGitHubService = UserGitHubService(gitHubRepository = userRepository)
         for (id in list) {
             listUsers.forEach {
                 if (id == it.id) {

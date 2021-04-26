@@ -1,7 +1,7 @@
-package com.example.mysamplemiddledev.providers
+package com.example.mysamplemiddledev.di.builder
 
-import com.example.mysamplemiddledev.db.repository.UserFromGitHubRepository
-import com.example.mysamplemiddledev.db.repository.UserFromGitHubRepositoryImpl
+import com.example.mysamplemiddledev.db.repository.UsersFromDbRepository
+import com.example.mysamplemiddledev.db.repository.UsersFromDbRepositoryImpl
 import com.example.mysamplemiddledev.db.room.UserDao
 import com.example.mysamplemiddledev.net.api.ApiService
 import com.example.mysamplemiddledev.net.api.CatsFactApi
@@ -12,21 +12,30 @@ import com.example.mysamplemiddledev.net.repository.colibri.ColibriRepository
 import com.example.mysamplemiddledev.net.repository.colibri.ColibriRepositoryImpl
 import com.example.mysamplemiddledev.net.repository.habr.HabrRepository
 import com.example.mysamplemiddledev.net.repository.habr.HabrRepositoryImpl
+import dagger.Module
+import dagger.Provides
 
-object RepositoriesProvider {
+@Module
+class RepositoryBuilder {
+
+    @Provides
     fun provideHabrRepository(api: ApiService): HabrRepository {
         return HabrRepositoryImpl(apiService = api)
     }
 
-    fun provideColibriRepository(networkApiService: NetworkApiService): ColibriRepository {
-        return ColibriRepositoryImpl(networkApiService = networkApiService)
+    @Provides
+    fun provideUserFromGitHubRepository(userDao: UserDao): UsersFromDbRepository {
+        return UsersFromDbRepositoryImpl(userDao = userDao)
     }
 
+    @Provides
     fun provideCatFactsRepository(catsFactApi: CatsFactApi): CatFactsRepository {
         return CatFactsRepositoryImpl(catsFactApi = catsFactApi)
     }
 
-    fun provideGitHubRepository(userDao: UserDao): UserFromGitHubRepository {
-        return UserFromGitHubRepositoryImpl(userDao)
+    @Provides
+    fun provideColibriRepository(networkApiService: NetworkApiService): ColibriRepository {
+        return ColibriRepositoryImpl(networkApiService = networkApiService)
     }
+
 }

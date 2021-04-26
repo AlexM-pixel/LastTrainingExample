@@ -1,12 +1,12 @@
 package com.example.mysamplemiddledev.db.repository
 
 import com.example.mysamplemiddledev.db.room.UserDao
-import com.example.mysamplemiddledev.model.habr_example.ResponseUser
 import com.example.mysamplemiddledev.model.habr_example.User
 import io.reactivex.Observable
 import io.reactivex.Single
+import javax.inject.Inject
 
-class UserFromGitHubRepositoryImpl(private val userDao: UserDao) : UserFromGitHubRepository {
+class UsersFromDbRepositoryImpl @Inject constructor (private val userDao: UserDao) : UsersFromDbRepository {
     override fun getUsersList(): Observable<List<User>> {
         return userDao.getAllUsers()
     }

@@ -14,7 +14,7 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(responseUser: User): Single<Long?>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUsers(usersList: MutableList<User>): Single<List<Long>>
 
     @Query("SELECT * from users_from_GitHub")
