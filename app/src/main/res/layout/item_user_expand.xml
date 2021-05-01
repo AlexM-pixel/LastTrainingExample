@@ -25,6 +25,7 @@
                 android:layout_marginStart="16dp"
                 android:padding="18dp"
                 android:text="@string/title_empty"
+                tools:text="@tools:sample/cities"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#37474F"
                 app:layout_constraintBottom_toBottomOf="parent"

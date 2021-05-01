@@ -27,7 +27,7 @@ class SavedUsersRvAdapter(listener: OnClickSavedUser) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User?) {
             picasso.load(user?.avatar_url)
-                .into(binding.imageCircle)
+                .into(binding.imageCircle2)
             binding.user = user
             //  binding.executePendingBindings()
             binding.root.setOnClickListener {
