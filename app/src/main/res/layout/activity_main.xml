@@ -1,52 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.statsUsers.MainActivity">
+    tools:context=".ui.MainActivity">
 
-    <Button
-        android:id="@+id/habr_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="get users from habr"
-        android:padding="18dp"
-        android:textSize="20sp"
-        android:textColor="#ffff"
-        android:background="@color/buttonHubr"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="26dp"/>
-    <Button
-        android:id="@+id/colibri_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/habr_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="18dp"
-        android:background="@color/buttonColibri"
-        android:text="get user from Colibri"
-        android:textSize="20sp"
-        android:textColor="#ffff"
-        android:layout_margin="26dp"
-        android:gravity="center"/>
-    <Button
-        android:id="@+id/colibri_button_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/colibri_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="18dp"
-        android:background="@color/buttonColibri"
-        android:text="Post user to Colibri"
-        android:textSize="20sp"
-        android:textColor="#ffff"
-        android:layout_margin="26dp"
-        android:gravity="center"/>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.mysamplemiddledev.viewModel.MyViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#51A19F9D">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
