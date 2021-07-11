@@ -2,14 +2,10 @@ package com.example.mysamplemiddledev.ui
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.widget.ViewPager2
 import com.example.mysamplemiddledev.R
 import com.example.mysamplemiddledev.databinding.ActivityMainBinding
-import com.example.mysamplemiddledev.model.State
 import com.example.mysamplemiddledev.ui.adapters.ViewPagerAdapter
 import com.example.mysamplemiddledev.ui.base.BaseActivity
-import com.example.mysamplemiddledev.viewModel.MyViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.view.*
 

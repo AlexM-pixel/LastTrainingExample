@@ -7,6 +7,24 @@
         motion:constraintSetStart="@id/start"
         motion:duration="1000">
         <OnClick motion:targetId="@id/image_Circle2" />
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/login_user"
+                motion:framePosition="95"
+                android:alpha="0"/>
+            <KeyAttribute
+                motion:motionTarget="@+id/score_user"
+                motion:framePosition="95"
+                android:alpha="0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/type_user"
+                motion:framePosition="95"
+                android:alpha="0" />
+            <KeyAttribute
+                motion:motionTarget="@+id/image_Circle2"
+                motion:framePosition="100"
+                android:rotationY="180" />
+        </KeyFrameSet>
 
     </Transition>
 
@@ -15,9 +33,8 @@
     <ConstraintSet android:id="@+id/end">
         <Constraint
             android:id="@+id/image_Circle2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
